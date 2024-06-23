@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Sans+SC:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (max-width: 640px) {
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
+  
+  .transition-transform {
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.bold-hr {
+  border-top-width: 2px; 
+  border-color: black;
+  font-weight: bold;
+}
+td, th {
+  border: 1px solid #817b7b;
+  padding: 8px; 
+  text-align: center; 
+}
+tr {
+  border: 1px solid #817b7b;
+}
+.Twentieth-Century {
+  font-family: "Twentieth Century", serif;
+  font-Size: 14px;
+  font-weight:400;
+  line-Height:20px;
+  color: rgb(0, 0, 0);
+}
+.Futura {
+  font-family: "Nunito", serif;
+  font-weight: 100;
+  font-size: 31px;
+  line-Height:31px;
+}
+
+.merriweather-black-italic {
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  .merriweather-regular {
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  ::-webkit-scrollbar {
+    width : 10px;
+  }
+  
+  ::-webkit-scrollbar-track{
+    background : #e0e0e0;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background : #888;
+  }
+  
+  ::-webkit-scrollbar-track:hover{
+    background : #555;
+  }
+  
+  .element-class {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+  .element-class::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+ 
+/* body{
+    height: 100vh;
+} */
