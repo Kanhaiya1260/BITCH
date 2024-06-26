@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import ProdImage, { SimilarProd } from "../components/custom/ProdImage";
 import { prods } from "../data/ProductData";
-
+import Bag from "../components/custom/Bag";
 
 const useQuery = () => {
 	return new URLSearchParams(useLocation().search);
 };
 const ProductDesc = () => {
 	const query = useQuery();
-	const productIndex = query.get('index'); // Get the index from the query string
+	const productIndex = query.get('index');
 	const data = prods[productIndex];
+	const [showResult, setShowResult] = useState(false);
+	const handleCheck = () => {
+		setShowResult(true);
+	};
+	
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 p-2 ">
+		<div className="grid grid-cols-1 md:grid-cols-2 p-2  ">
 			<div className=" p-2">
 				<ProdImage images={data.images} />
 			</div>
@@ -62,7 +67,7 @@ const ProductDesc = () => {
 				</div>
 
 				<button className="btn" onClick={() => document.getElementById('my_modal_4').showModal()}>
-					<img className="h-4" src="https://www.pngall.com/wp-content/uploads/6/Vector-Tape-Measure.png" />SIZE CHART</button>
+					<img className="h-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ23SZXYidHA1WCt0pf3bzrYmNP95A1lHs7Q&s" />SIZE CHART</button>
 				<dialog id="my_modal_4" className="modal ">
 					<div className="modal-box w-11/12 h-[450px] max-w-4xl p-2 pt-4 ">
 						<p className="text-center">{data.title}</p>
@@ -124,27 +129,13 @@ const ProductDesc = () => {
 						</div>
 					</div>
 				</dialog>
-
-				<div className="drawer drawer-end">
-					<input id="my-drawer" type="checkbox" className="drawer-toggle" />
-					<div className="drawer-content">
-						<label htmlFor="my-drawer" className="btn w-full bg-black text-white hover:skeleton hover:bg-black">
-							<img className="h-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFSdPgCHsGunAivcnS9OvmlVRLpHGqeDb6w&usqp=CAU" />ADD TO BAG</label>
-					</div>
-					<div className="drawer-side">
-						<label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-						<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-							{/* Sidebar content here */}
-							<li><a>Sidebar Item 1</a></li>
-							<li><a>Sidebar Item 2</a></li>
-						</ul>
-					</div>
-				</div>
+    
+				<Bag/>
 
 				<button className="btn bg-white text-black border  border-black" onClick={() => document.getElementById('my_modal_3').showModal()}>
 					<img className="h-4" src="https://cdn.icon-icons.com/icons2/2761/PNG/512/love_heart_icon_176421.png" />
 					Add To Wishlist</button>
-				<dialog id="my_modal_3" className="modal p-4">
+				<dialog id="my_modal_3" className="modal p-4 h-[1000px]">
 					<div className="modal-box flex flex-col items-center justify-center sm:w-100%  sm:h-1/2 border border-black">
 						<form method="dialog">
 							<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -188,7 +179,7 @@ const ProductDesc = () => {
 								<p>{data.description}</p>
 							</div>
 						</div>
-						<div className="collapse collapse-arrow join-item border-base-300 border">
+						<div className="collapse collapse-arrow join-item border-base-300 border relative z-10">
 							<input type="checkbox" name="my-accordion-4" />
 							<div className="collapse-title text-xl font-medium">RETURNS & EXCHANGER INFORMATION</div>
 							<div className="collapse-content">
@@ -204,6 +195,40 @@ const ProductDesc = () => {
 						</div>
 					</div>
 				</div>
+
+				<div className=" border rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md p-4 hover:shadow-lg">
+					<label className="form-control w-full">
+						<div className="label pb-4">
+							<span className="label-text">Estimated Delivery Date & COD Checker
+							</span>
+						</div>
+						<div className="flex w-full">
+							<input
+								type="text" placeholder="Enter your pincode" className="input input-bordered flex-1 mr-4"
+							/>
+							<button
+								className="btn btn-primary bg-black hover:bg-black text-white"
+								onClick={handleCheck}
+							>
+								check
+							</button>
+						</div>
+
+						{showResult && (
+							<div className="label mt-1 flex flex-col items-start">
+								<span className="label-text-alt flex">
+									<img className="h-4 mr-2" src="https://cdn-icons-png.flaticon.com/512/3143/3143267.png" />
+									<p className="mr-1">Expect delivery by</p><p className="text-green-500">{data.date}</p>
+								</span>
+								<span className="label-text-alt flex">
+									<img className="h-4 mr-2" src="https://cdn-icons-png.flaticon.com/512/4470/4470504.png" /><p className="mr-1">Cash on delivery</p> {data.Cash_on && (<p className="text-green-500">available</p>)||(<p className="text-red-500">not available</p>)}
+									
+								</span>
+							</div>
+						)}
+					</label>
+				</div>
+
 			</div>
 		</div>
 	);

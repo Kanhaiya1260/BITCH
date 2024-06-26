@@ -186,6 +186,7 @@ export const SimilarProd = ({ prods }) => {
   };
 
   return (
+    
     <div className="h-16 flex flex-wrap gap-3 justify-center md:justify-start ">
       {prods.map((prod, index) => (
         <div key={index}>
@@ -197,6 +198,32 @@ export const SimilarProd = ({ prods }) => {
           />
         </div>
       ))}
+    </div>
+  );
+};
+
+
+export const YouMayLike = ({ prods }) => {
+  const navigate = useNavigate();
+
+  const handleImageClick = (index) => {
+    navigate(`/product?index=${index}`);
+  };
+
+  return (
+    <div className="w-[300px] h-[150px]">
+      <div className="overflow-x-scroll element-class flex">
+        {prods.map((prod, index) => (
+          <div key={index} className="flex-shrink-0 mr-2">
+            <img
+              src={prod.images[0]}
+              className="w-[90px] h-[120px] cursor-pointer"
+              alt={prod.title}
+              onClick={() => handleImageClick(index)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

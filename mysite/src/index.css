@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @media (max-width: 640px) {
   .overflow-x-hidden {
     overflow-x: hidden;
